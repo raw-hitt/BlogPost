@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using WebApplication1.Data;
 using WebApplication1.Models;
 using WebApplication1.Models.ViewModels;
@@ -16,6 +17,7 @@ namespace WebApplication1.Controllers
             db = _db;
         }
 
+        #region HTTP Post Methods
         [HttpPost]
         [Route("CreateBlog")]
         public async Task<ApiResponse<BlogVm>> CreateBlogAsync(BlogVm vm)
@@ -149,5 +151,64 @@ namespace WebApplication1.Controllers
 
             }
         }
+        #endregion
+
+        #region Http Get Methods
+
+        [HttpGet]
+        [Route("GetAllBlogs")]
+        public async Task<ApiResponse<List<Blogs>>> GetAllBlogs()
+        {
+            try
+            {
+
+                var allBlogs = await db.Blogs.ToListAsync();
+
+                if (allBlogs != null)
+                {
+                    return new ApiResponse<List<Blogs>>(allBlogs);
+                }
+                else
+                {
+                    return new ApiResponse<List<Blogs>>(null, 404, "No Blogs Found");
+
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionLogs exl = new ExceptionLogs(ex.Message);
+                return new ApiResponse<List<Blogs>>(null, 500, ex.Message);
+
+            }
+        }
+
+        [HttpGet]
+        [Route("GetBlogById")]
+        public async Task<ApiResponse<Blogs>> GetBlogById(int id)
+        {
+            try
+            {
+
+                var blog = await db.Blogs.Where(x => x.Id == id).FirstOrDefaultAsync();
+
+                if (blog != null)
+                {
+                    return new ApiResponse<Blogs>(blog);
+                }
+                else
+                {
+                    return new ApiResponse<Blogs>(null, 404, "No Blogs Found");
+
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionLogs exl = new ExceptionLogs(ex.Message);
+                return new ApiResponse<Blogs>(null, 500, ex.Message);
+
+            }
+        }
+
+        #endregion
     }
 }
