@@ -20,7 +20,7 @@ namespace WebApplication1.Controllers
         #region HTTP Post Methods
         [HttpPost]
         [Route("CreateBlog")]
-        public async Task<ApiResponse<BlogVm>> CreateBlogAsync(BlogVm vm)
+        public async Task<ApiResponse<BlogVm>> CreateBlogAsync([FromBody] BlogVm vm)
         {
             try
             {
@@ -54,7 +54,7 @@ namespace WebApplication1.Controllers
 
         [HttpPost]
         [Route("UpdateBlog")]
-        public ApiResponse<UpdateBlogVM> UpdateBlog(UpdateBlogVM vm)
+        public ApiResponse<UpdateBlogVM> UpdateBlog([FromBody] UpdateBlogVM vm)
         {
             try
             {
@@ -91,7 +91,7 @@ namespace WebApplication1.Controllers
 
         [HttpPost]
         [Route("DeleteBlog")]
-        public ApiResponse<bool> DeleteBlog(int id)
+        public ApiResponse<bool> DeleteBlog([FromBody] int id)
         {
             try
             {
@@ -121,7 +121,7 @@ namespace WebApplication1.Controllers
 
         [HttpPost]
         [Route("UpdateBlogViewCount")]
-        public ApiResponse<int> UpdateBlogViewCount(int id)
+        public ApiResponse<int> UpdateBlogViewCount([FromBody] int id)
         {
             try
             {
@@ -162,7 +162,8 @@ namespace WebApplication1.Controllers
             try
             {
 
-                var allBlogs = await db.Blogs.ToListAsync();
+                var allBlogs = await db.Blogs.
+                    OrderByDescending(x => x.PublishDate).ToListAsync();
 
                 if (allBlogs != null)
                 {
@@ -183,7 +184,7 @@ namespace WebApplication1.Controllers
         }
 
         [HttpGet]
-        [Route("GetBlogById")]
+        [Route("GetBlogById/{id}")]
         public async Task<ApiResponse<Blogs>> GetBlogById(int id)
         {
             try
@@ -205,6 +206,34 @@ namespace WebApplication1.Controllers
             {
                 ExceptionLogs exl = new ExceptionLogs(ex.Message);
                 return new ApiResponse<Blogs>(null, 500, ex.Message);
+
+            }
+        }
+
+        [HttpGet]
+        [Route("GetAllBlogs/{page}/{records}")]
+        public async Task<ApiResponse<List<Blogs>>> GetAllBlogs(int page, int records)
+        {
+            try
+            {
+
+                var allBlogs = await db.Blogs.Skip(page * records).Take(records).
+                    OrderByDescending(x => x.PublishDate).ToListAsync();
+
+                if (allBlogs != null)
+                {
+                    return new ApiResponse<List<Blogs>>(allBlogs);
+                }
+                else
+                {
+                    return new ApiResponse<List<Blogs>>(null, 404, "No Blogs Found");
+
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionLogs exl = new ExceptionLogs(ex.Message);
+                return new ApiResponse<List<Blogs>>(null, 500, ex.Message);
 
             }
         }
