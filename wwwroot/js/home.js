@@ -33,7 +33,7 @@ function injectBlogInList(data) {
 
     $.each(data, function (index, value) {
         var blog = $("<li class='myBlog'><div class='blog-list'><div class='blog-title'>" +
-            value.title + "</div><div class='blog-content'>" + value.content + "</div><div class='blog-readMore'><a class='btnRead'  target='_blank' href='blog-detail?bid=" + value.id + "'>...Read More</a></div><div class='blog-details'>" +
+            value.title + "</div><div class='blog-content'>" + value.content + "</div><div class='blog-readMore'><a class='btnRead'  target='_blank' href='Home/BlogDetail?bid=" + value.id + "'>...Read More</a></div><div class='blog-details'>" +
             "- Published By :" + value.author + "</div></div></li>");
         $('#BlogList').append(blog);
 

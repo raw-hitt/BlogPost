@@ -19,6 +19,10 @@ namespace WebApplication1.Controllers
         {
             return View();
         }
+        public IActionResult BlogDetail()
+        {
+            return View();
+        }
 
 
 

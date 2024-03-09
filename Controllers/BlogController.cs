@@ -162,12 +162,12 @@ namespace WebApplication1.Controllers
             try
             {
 
-                var allBlogs = await db.Blogs.
+                var allBlogs = await db.Blogs.Where(x => x.PublishDate < DateTime.Now).
                     OrderByDescending(x => x.PublishDate).ToListAsync();
 
                 if (allBlogs != null)
                 {
-                    
+
                     return new ApiResponse<List<Blogs>>(allBlogs);
                 }
                 else
@@ -195,6 +195,36 @@ namespace WebApplication1.Controllers
 
                 if (blog != null)
                 {
+                    return new ApiResponse<Blogs>(blog);
+                }
+                else
+                {
+                    return new ApiResponse<Blogs>(null, 404, "No Blogs Found");
+
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionLogs exl = new ExceptionLogs(ex.Message);
+                return new ApiResponse<Blogs>(null, 500, ex.Message);
+
+            }
+        }
+
+        [HttpGet]
+        [Route("GetBlogByIdAndUpdateView/{id}")]
+        public async Task<ApiResponse<Blogs>> GetBlogByIdAndUpdateView(int id)
+        {
+            try
+            {
+
+                var blog = await db.Blogs.Where(x => x.Id == id).FirstOrDefaultAsync();
+
+                if (blog != null)
+                {
+                    blog.Views = blog.Views + 1;
+                    db.Blogs.Update(blog);
+                    db.SaveChanges();
                     return new ApiResponse<Blogs>(blog);
                 }
                 else
