@@ -116,5 +116,38 @@ namespace WebApplication1.Controllers
 
             }
         }
+
+        [HttpPost]
+        [Route("UpdateBlogViewCount")]
+        public ApiResponse<int> UpdateBlogViewCount(int id)
+        {
+            try
+            {
+                var _blog = db.Blogs.Where(x => x.Id == id).FirstOrDefault();
+
+                if (_blog == null)
+                {
+                    return new ApiResponse<int>(id, 404, "No Blog Found with given id");
+
+                }
+                else
+                {
+                    int oldCount = _blog.Views;
+                    _blog.Views = _blog.Views + 1;
+
+                    db.Blogs.Update(_blog);
+                    db.SaveChanges();
+
+                    return new ApiResponse<int>(_blog.Views, 200, "Count increased by 1 old count = " + oldCount + " new count =" + (oldCount + 1));
+                }
+
+            }
+            catch (Exception ex)
+            {
+                ExceptionLogs exl = new ExceptionLogs(ex.Message);
+                return new ApiResponse<int>(id, 500, ex.Message);
+
+            }
+        }
     }
 }
