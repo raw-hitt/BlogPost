@@ -1,7 +1,60 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+<div id="Blogs">
+    <ul id="BlogList">
+    </ul>
+</div>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/js/home.js" type="text/javascript"></script>
 
 
+<style>
+    ul#BlogList {
+        list-style: none;
+    }
 
+    .blog-list {
+        margin: 10px;
+    }
+
+    .blog-title {
+        font-size: 30px;
+        font-weight: 500;
+        margin-bottom: 15px;
+    }
+
+    .blog-content {
+        text-overflow: ellipsis;
+        word-wrap: break-word;
+        overflow: hidden;
+        max-height: 3.6em;
+        line-height: 1.8em;
+    }
+
+    .blog-details {
+        font-size: 12px;
+        text-align: right;
+        margin-top: 15px;
+    }
+
+    .blog-readMore {
+        float: left;
+        width: 200px;
+    }
+
+    a.btnRead {
+        color: dimgray;
+        text-decoration: none;
+        font-size: 17px;
+        font-weight: 700;
+    }
+
+    li.myBlog {
+        margin-bottom: 15px;
+        border-bottom: 1px solid #ededed;
+        padding-bottom: 16px;
+    }
+</style>
 
