@@ -9,6 +9,7 @@ namespace WebApplication1.Models
         public int Name { get; set; }
         public string Comment { get; set; }
         public int BlogId { get; set; }
-        
+        [ForeignKey("Id")]
+        public Blogs bid { get; set; }
     }
 }
