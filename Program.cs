@@ -10,6 +10,16 @@ builder.Services.AddDbContext<AppdbContext>(x => x.UseSqlServer(builder.Configur
 
 var app = builder.Build();
 
+#region Seeding Data
+using (var scope = app.Services.CreateScope())
+{
+    var service = scope.ServiceProvider;
+    var context = service.GetRequiredService<AppdbContext>();
+    await Seeding.SeedData(context);
+}
+#endregion
+
+
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
