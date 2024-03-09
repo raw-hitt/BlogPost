@@ -25,7 +25,10 @@ namespace WebApplication1.Migrations
             modelBuilder.Entity("WebApplication1.Models.Blogs", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Author")
                         .IsRequired()
@@ -65,7 +68,10 @@ namespace WebApplication1.Migrations
             modelBuilder.Entity("WebApplication1.Models.Comments", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<int>("BlogId")
                         .HasColumnType("int");
@@ -104,28 +110,6 @@ namespace WebApplication1.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("WebApplication1.Models.Blogs", b =>
-                {
-                    b.HasOne("WebApplication1.Models.Users", "uid")
-                        .WithMany()
-                        .HasForeignKey("Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("uid");
-                });
-
-            modelBuilder.Entity("WebApplication1.Models.Comments", b =>
-                {
-                    b.HasOne("WebApplication1.Models.Blogs", "bid")
-                        .WithMany()
-                        .HasForeignKey("Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("bid");
                 });
 #pragma warning restore 612, 618
         }

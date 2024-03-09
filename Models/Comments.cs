@@ -5,11 +5,11 @@ namespace WebApplication1.Models
 {
     public class Comments : IBaseModel
     {
+        [System.ComponentModel.DataAnnotations.Key]
         public int Id { get; set; }
         public int Name { get; set; }
         public string Comment { get; set; }
         public int BlogId { get; set; }
-        [ForeignKey("Id")]
-        public Blogs bid { get; set; }
+        
     }
 }
