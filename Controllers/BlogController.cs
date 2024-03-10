@@ -19,7 +19,7 @@ namespace WebApplication1.Controllers
 
         #region HTTP Post Methods
         [HttpPost]
-        [Route("CreateBlog")]
+        [Route("CreateBlogAsync")]
         public async Task<ApiResponse<BlogVm>> CreateBlogAsync([FromBody] BlogVm vm)
         {
             try
@@ -163,6 +163,35 @@ namespace WebApplication1.Controllers
             {
 
                 var allBlogs = await db.Blogs.Where(x => x.PublishDate < DateTime.Now).
+                    OrderByDescending(x => x.PublishDate).ToListAsync();
+
+                if (allBlogs != null)
+                {
+
+                    return new ApiResponse<List<Blogs>>(allBlogs);
+                }
+                else
+                {
+                    return new ApiResponse<List<Blogs>>(null, 404, "No Blogs Found");
+
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionLogs exl = new ExceptionLogs(ex.Message);
+                return new ApiResponse<List<Blogs>>(null, 500, ex.Message);
+
+            }
+        }
+        
+        [HttpGet]
+        [Route("GetAllBlogsForAdmin")]
+        public async Task<ApiResponse<List<Blogs>>> GetAllBlogsForAdmin()
+        {
+            try
+            {
+
+                var allBlogs = await db.Blogs.
                     OrderByDescending(x => x.PublishDate).ToListAsync();
 
                 if (allBlogs != null)

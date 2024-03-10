@@ -4,4 +4,133 @@
 }
 
 
-<h1>Add blog Page</h1>
+<h1>Add New Blog ..!!</h1>
+
+<div class="login-bg">
+    <div class="login-page">
+        <div class="row">
+            <div class="col-md-6 login-zone">
+                    <div class="controls">
+                        <input id="title" type="text" placeholder="Title" class="blog-control" required />
+                        <br />
+                        <textarea id="content" class="content"  rows="10" cols="50" placeholder="Enter Your Content" class="blog-control"></textarea>
+                        <br />
+                        Publish Date : <input id="date" type="date" placeholder="publish date" required />
+
+                    </div>
+                    <div class="btn-login">
+                        <button id="btnSubmit" onclick=CreateBlogAsync() class="button-control blog-btn-primary">Submit</button>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .logo img {
+        height: 65px;
+    }
+
+    .logo {
+        padding-bottom: 30px;
+    }
+
+    .login-page {
+        width: 40%;
+        margin: 0 auto;
+        margin-top: 75px;
+        background: #fff;
+    }
+
+    .login-title {
+        font-size: 25px;
+        FONT-WEIGHT: 500;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+
+    .btn-login {
+        margin-top: 35px;
+    }
+
+    .login-bg {
+        width: 100%;
+        overflow: hidden;
+        background: #aaaaaa24;
+        height: 100vh;
+    }
+
+    .login-zone {
+        padding: 35px;
+        padding-top: 44px;
+        padding-left: 45px;
+    }
+
+    .forgotpassword {
+        text-align: right;
+        margin-top: 20px;
+        font-size: 11px;
+        color: red;
+    }
+
+    .blog-control {
+        border-color: #C1C1C1;
+        border-width: 1px;
+        padding: 6px;
+        margin-top: 15px;
+        margin-bottom: 15px;
+        width: 97%;
+        border: none;
+        border-bottom: 1px solid grey;
+        padding-bottom: 10px;
+    }
+
+    .blog-btn-primary {
+        background: #D52727;
+        color: #fff;
+        border-radius: 5px;
+        border: none;
+        width: 140px;
+        font-size: 20px;
+        padding: 11px;
+        text-transform: uppercase;
+    }
+
+    .image-zone {
+        background: #FFB7B7;
+        overflow: hidden;
+        text-align: center;
+    }
+
+    .right-semi {
+        background: #CCCCCC;
+        height: 250px;
+        float: right;
+        border-radius: 609px;
+        width: 62%;
+        position: relative;
+        top: 40px;
+        left: 205px;
+    }
+
+    .bottom-semi {
+        background: #CCCCCC;
+        height: 445px;
+        border-radius: 6090px;
+        width: 82%;
+        position: relative;
+        top: 320px;
+        left: 135px;
+    }
+
+    .blog-control:focus {
+        outline-color: transparent;
+    }
+</style>
+<link rel="stylesheet" href="~/css/EasyEditor.css" />
+<script src="~/js/EasyEditor.js"></script>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+<script src="~/js/addBlog.js"></script>

@@ -10,7 +10,7 @@ function getAllBlogs() {
 
     $.ajax({
         type: "GET",
-        url: "/api/Blog/GetAllBlogs",
+        url: "/api/Blog/GetAllBlogsForAdmin",
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function (result, status, xhr) {
