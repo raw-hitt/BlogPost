@@ -91,12 +91,12 @@ namespace WebApplication1.Controllers
 
         [HttpPost]
         [Route("DeleteBlog")]
-        public ApiResponse<bool> DeleteBlog([FromBody] int id)
+        public ApiResponse<bool> DeleteBlog([FromBody] DeleteBlogVm BlogId)
         {
             try
             {
 
-                var _blog = db.Blogs.Where(x => x.Id == id).FirstOrDefault();
+                var _blog = db.Blogs.Where(x => x.Id == BlogId.BlogId).FirstOrDefault();
 
                 if (_blog == null)
                 {
@@ -271,4 +271,6 @@ namespace WebApplication1.Controllers
 
         #endregion
     }
+
+  
 }
