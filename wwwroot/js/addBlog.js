@@ -2,7 +2,7 @@
 
 
 $(document).ready(function () {
-    $('.content').EasyEditor();
+    $('.content').richText();
 });
 
 

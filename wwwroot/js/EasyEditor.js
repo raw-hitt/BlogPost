@@ -381,6 +381,4 @@
 		ee_event_handler(this);
 		return this;
 	};
-
-	
 }(jQuery));
