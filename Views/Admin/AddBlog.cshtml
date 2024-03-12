@@ -3,9 +3,7 @@
     ViewBag.Title = "Admin - Add blog";
 }
 
-<link rel="stylesheet" href="~/css/jquery-te-1.4.0.css" asp-append-version="true" />
-<script type="text/javascript" src="http://code.jquery.com/jquery.min.js" charset="utf-8"></script>
-<script src="~/js/jte.js"></script>
+@*<script type="text/javascript" src="http://code.jquery.com/jquery.min.js" charset="utf-8"></script>*@
 
 <h1>Add New Blog ..!!</h1>
 
@@ -16,7 +14,7 @@
                 <div class="controls">
                     <input id="title" type="text" placeholder="Title" class="blog-control" required />
                     <br />
-                    <textarea id="content" class="jqte-test" rows="10" cols="50" placeholder="Enter Your Content" ></textarea>
+                    <textarea id="content" class="jqte-test" rows="10" cols="50" placeholder="Enter Your Content"></textarea>
                     <br />
                     Publish Date : <input id="date" type="date" placeholder="publish date" required />
 
@@ -132,8 +130,9 @@
         outline-color: transparent;
     }
 </style>
-<link rel="stylesheet" href="~/css/EasyEditor.css" />
+@*<link rel="stylesheet" href="~/css/EasyEditor.css" />*@
 @*<script src="~/lib/jquery/dist/jquery.min.js"></script>*@
-
-
+<script src="https://code.jquery.com/jquery-3.7.1.js" ></script>
+<script src="~/js/jte.js" asp-append-version="true" type="text/javascript"></script>
 <script src="~/js/addBlog.js"></script>
+

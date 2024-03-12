@@ -7,7 +7,6 @@ $(document).ready(function () {
 
 
 function CreateBlogAsync() {
-    $('.jqte-test').jqte();
 
     var userName = localStorage.getItem("userName");
     var userId = localStorage.getItem("userId");
