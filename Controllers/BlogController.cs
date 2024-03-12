@@ -72,7 +72,6 @@ namespace WebApplication1.Controllers
                     _blog.Title = vm.Title;
                     _blog.ModifiedBy = vm.ModifiedBy;
                     _blog.ModifiedOn = DateTime.Now;
-                    _blog.PublishDate = vm.PublishDate;
 
                     db.Blogs.Update(_blog);
                     db.SaveChanges();
