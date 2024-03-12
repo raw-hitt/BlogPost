@@ -3,3 +3,4 @@
 #  ---update-database
 
 #Seeding Class will insert a default user check credentials in Seeding.cs 
+#adminurl -http://localhost:5164/admin/login

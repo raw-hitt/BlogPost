@@ -9,21 +9,20 @@
                 <div class="login-title">
                     Admin login
                 </div>
-                <form autocomplete="off">
-                    <div class="controls">
-                        <input type="text" placeholder="Email" class="blog-control" required />
-                        <br />
-                        <input type="password" placeholder="Password" class="blog-control" required />
-                    </div>
-                    <div class="btn-login">
-                        <button id="btnSubmit" class="button-control blog-btn-primary">Login</button>
-                    </div>
-                </form>
+                <div class="controls">
+                    <input type="text" id="UserName" placeholder="Email" class="blog-control" required />
+                    <br />
+                    <input type="password" id="Password" placeholder="Password" class="blog-control" required />
+                </div>
+                <div class="btn-login">
+                    <button id="btnSubmit" onclick="Login()" class="button-control blog-btn-primary">Login</button>
+                </div>
             </div>
         </div>
     </div>
 </div>
-
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/js/login.js" type="text/javascript"></script>
 <style>
     .logo img {
         height: 65px;

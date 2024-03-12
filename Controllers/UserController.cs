@@ -19,34 +19,39 @@ namespace WebApplication1.Controllers
 
         [HttpPost]
         [Route("Login")]
-        public async Task<ApiResponse<LoginVm>> Login([FromBody] LoginVm vm)
+        public async Task<ApiResponse<LoginReturnVm>> Login([FromBody] LoginVm vmx)
         {
+            LoginReturnVm vm=new LoginReturnVm();
+            vm.UserId = 0;
+            vm.UserName=vmx.UserName;
             try
             {
-                Users BlogUser = await db.Users.Where(x => x.UserName == vm.UserName).FirstOrDefaultAsync();
+                Users BlogUser = await db.Users.Where(x => x.UserName == vmx.UserName).FirstOrDefaultAsync();
 
                 if (BlogUser == null)
                 {
-                    return new ApiResponse<LoginVm>(vm, 404, "User not found with username " + vm.UserName);
+                    return new ApiResponse<LoginReturnVm>(vm, 404, "User not found with username " + vm.UserName);
 
                 }
 
-                if (vm.Password!=BlogUser.Password )
+                if (vmx.Password!=BlogUser.Password )
                 {
-                    return new ApiResponse<LoginVm>(vm, 500, "Login Failed - Incorrect Password" + vm.UserName);
+                    return new ApiResponse<LoginReturnVm>(vm, 500, "Login Failed - Incorrect Password" + vm.UserName);
 
                 }
 
+                vm.LastLogin=DateTime.Now;
+                vm.UserId = BlogUser.Id;
                 BlogUser.LastLogin=DateTime.Now;
                 db.Update(BlogUser);
                 db.SaveChanges();
 
-                return new ApiResponse<LoginVm>(vm,200,"Login Successful");
+                return new ApiResponse<LoginReturnVm>(vm,200,"Login Successful");
             }
             catch (Exception ex)
             {
                 ExceptionLogs exl = new ExceptionLogs(ex.Message);
-                return new ApiResponse<LoginVm>(vm, 500, ex.Message);
+                return new ApiResponse<LoginReturnVm>(vm, 500, ex.Message);
 
             }
         }

@@ -30,6 +30,8 @@ function getAllBlogs() {
 function injectBlogInList(data) {
 
     console.log(data);
+    $('#Blogs').empty();
+
 
     $.each(data, function (index, value) {
         var blog = $("<li class='myBlog'><div class='blog-list'><div class='blog-title'>" +
