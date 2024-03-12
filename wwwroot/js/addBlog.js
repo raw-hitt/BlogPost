@@ -1,20 +1,23 @@
 ﻿
 
-
 $(document).ready(function () {
-    $('.content').richText();
+    $('.jqte-test').jqte();
 });
 
 
 
 function CreateBlogAsync() {
+    $('.jqte-test').jqte();
+
+    var userName = localStorage.getItem("userName");
+    var userId = localStorage.getItem("userId");
 
     var Title = $("#title").val();
     var Content = $("#content").val();
     var PublishDate = $("#date").val();
-    var ModifiedBy = 1;
-    var CreatedBy = 1;
-    var Author = "hello man";
+    var ModifiedBy = userId;
+    var CreatedBy = userId;
+    var Author = userName;
 
 
     var _data = JSON.stringify({ "Author": Author,"Title": Title, "Content": Content, "PublishDate": PublishDate, "ModifiedBy": ModifiedBy, "CreatedBy": CreatedBy});

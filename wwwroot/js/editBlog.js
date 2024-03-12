@@ -16,10 +16,13 @@ function UpdateBlog() {
     const urlParams = new URLSearchParams(window.location.search);
     const myParam = urlParams.get('bid');
 
+    var userName = localStorage.getItem("userName");
+    var userId = localStorage.getItem("userId");
+
     var Title = $("#title").val();
     var Content = $("#content").val();
-    var ModifiedBy = 1;
-    var Author = "hello man edited";
+    var ModifiedBy = userId;
+    var Author = userName;
 
 
     var _data = JSON.stringify({ "Id": myParam, "Author": Author, "Title": Title, "Content": Content, "ModifiedBy": ModifiedBy });

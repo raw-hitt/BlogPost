@@ -3,6 +3,9 @@
     ViewBag.Title = "Admin - Add blog";
 }
 
+<link rel="stylesheet" href="~/css/jquery-te-1.4.0.css" asp-append-version="true" />
+<script type="text/javascript" src="http://code.jquery.com/jquery.min.js" charset="utf-8"></script>
+<script src="~/js/jte.js"></script>
 
 <h1>Add New Blog ..!!</h1>
 
@@ -10,17 +13,17 @@
     <div class="login-page">
         <div class="row">
             <div class="col-md-6 login-zone">
-                    <div class="controls">
-                        <input id="title" type="text" placeholder="Title" class="blog-control" required />
-                        <br />
-                        <textarea id="content" class="content"  rows="10" cols="50" placeholder="Enter Your Content" class="blog-control"></textarea>
-                        <br />
-                        Publish Date : <input id="date" type="date" placeholder="publish date" required />
+                <div class="controls">
+                    <input id="title" type="text" placeholder="Title" class="blog-control" required />
+                    <br />
+                    <textarea id="content" class="jqte-test" rows="10" cols="50" placeholder="Enter Your Content" ></textarea>
+                    <br />
+                    Publish Date : <input id="date" type="date" placeholder="publish date" required />
 
-                    </div>
-                    <div class="btn-login">
-                        <button id="btnSubmit" onclick=CreateBlogAsync() class="button-control blog-btn-primary">Submit</button>
-                    </div>
+                </div>
+                <div class="btn-login">
+                    <button id="btnSubmit" onclick=CreateBlogAsync() class="button-control blog-btn-primary">Submit</button>
+                </div>
             </div>
         </div>
     </div>
@@ -130,7 +133,7 @@
     }
 </style>
 <link rel="stylesheet" href="~/css/EasyEditor.css" />
-<script src="~/lib/jquery/dist/jquery.min.js"></script>
-<script src="~/js/EasyEditor.js"></script>
-<script src="~/js/addBlog.js"></script>
+@*<script src="~/lib/jquery/dist/jquery.min.js"></script>*@
 
+
+<script src="~/js/addBlog.js"></script>
